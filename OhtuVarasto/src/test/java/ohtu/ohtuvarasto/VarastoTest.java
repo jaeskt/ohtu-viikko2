@@ -88,7 +88,7 @@ public class VarastoTest {
     public void otetaanEnemmänKuinOn() {
         varasto.lisaaVarastoon(10);
         // Saldo tulisi olla 10
-        assertEquals(10, varasto.otaVarastosta(12), vertailuTarkkuus);
+        assertEquals(8, varasto.otaVarastosta(12), vertailuTarkkuus);
     }
 
     @Test
