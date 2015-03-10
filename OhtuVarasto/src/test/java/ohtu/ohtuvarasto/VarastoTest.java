@@ -69,10 +69,39 @@ public class VarastoTest {
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
+    }
+
+    @Test
+    public void laitetaanLiikaa() {
+        varasto.lisaaVarastoon(20);
+        // Saldo tulisi olla 10
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+
+    }
+
+    @Test
+    public void otetaanEnemmänKuinOn() {
+        varasto.lisaaVarastoon(10);
+        // Saldo tulisi olla 10
+        assertEquals(10, varasto.otaVarastosta(12), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otetaanNegatiivinen() {
+
+        // Saldo tulisi olla 0.0
+        assertEquals(0.0, varasto.otaVarastosta(-1), vertailuTarkkuus);
+    }
+
+    @Test
+    public void laitaNegatiivinen() {
+        varasto.lisaaVarastoon(-1);
+        // tilavuuden t
+        assertEquals(0.0, varasto.getSaldo(), vertailuTarkkuus);
     }
 }
