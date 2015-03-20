@@ -46,7 +46,7 @@ public class StatisticsTest{
   @Test
   public void eiLoytyvaHaku() {
     
-    assertEquals(null, stats.search("trolli"));
+    assertEquals(null, stats.search("timo"));
 }
   @Test
   public void joukkoeenListaaminen() {
