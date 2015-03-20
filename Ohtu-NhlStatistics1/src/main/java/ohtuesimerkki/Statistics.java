@@ -7,13 +7,14 @@ import java.util.List;
 
 public class Statistics {
 
+   
     private List<Player> players;
+    private Reader reader;
 
-    public Statistics() {
-        PlayerReader reader = new PlayerReader("http://nhlstats-2013-14.herokuapp.com/players.txt");
-        players = reader.getPlayers();       
+    public Statistics(Reader reader) {
+      this.reader = reader;   
+      players = reader.getPlayers();       
     }
-
     public Player search(String name) {
         for (Player player : players) {
             if (player.getName().contains(name)) {
