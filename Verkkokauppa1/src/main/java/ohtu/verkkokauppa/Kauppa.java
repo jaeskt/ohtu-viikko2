@@ -8,22 +8,25 @@ public class Kauppa {
     private Viitegeneraattori viitegeneraattori;
     private String kaupanTili;
 
-    public Kauppa() {
-        varasto = Varasto.getInstance();
-        pankki = Pankki.getInstance();
-        viitegeneraattori = Viitegeneraattori.getInstance();
+    public Kauppa(Varasto varasto, Pankki pankki, Viitegeneraattori viitegeneraattori) {
+        this.varasto = varasto;
+        this.pankki = pankki;
+        this.viitegeneraattori = viitegeneraattori;
         kaupanTili = "33333-44455";
     }
 
+    
     public void aloitaAsiointi() {
         ostoskori = new Ostoskori();
     }
 
+  
     public void poistaKorista(int id) {
         Tuote t = varasto.haeTuote(id); 
         varasto.palautaVarastoon(t);
     }
 
+   
     public void lisaaKoriin(int id) {
         if (varasto.saldo(id)>0) {
             Tuote t = varasto.haeTuote(id);             
@@ -31,6 +34,7 @@ public class Kauppa {
             varasto.otaVarastosta(t);
         }
     }
+
 
     public boolean tilimaksu(String nimi, String tiliNumero) {
         int viite = viitegeneraattori.uusi();
