@@ -2,54 +2,44 @@ package ohtu.verkkokauppa;
 
 import java.util.*;
 
-public class Varasto implements VarastoI  {
+public class Varasto implements VarastoI {
 
-    private static Varasto instanssi;
-
-    public static Varasto getInstance() {
-        if (instanssi == null) {
-            instanssi = new Varasto();
-        }
-
-        return instanssi;
+    public Varasto(Kirjanpito kirjanpito) {
+        this.kirjanpito = kirjanpito;
+         saldot = new HashMap<Tuote, Integer>();
+        alustaTuotteet();
     }
 
     private Kirjanpito kirjanpito;
     private HashMap<Tuote, Integer> saldot;
 
-    private Varasto() {
-        kirjanpito = Kirjanpito.getInstance();
-        saldot = new HashMap<Tuote, Integer>();
-        alustaTuotteet();
-    }
 
-  
     @Override
-    public Tuote haeTuote(int id){
+    public Tuote haeTuote(int id) {
         for (Tuote t : saldot.keySet()) {
-            if ( t.getId()==id) return t;
+            if (t.getId() == id) {
+                return t;
+            }
         }
 
         return null;
     }
 
     @Override
-    public int saldo(int id){
+    public int saldo(int id) {
         return saldot.get(haeTuote(id));
     }
 
-   
     @Override
-    public void otaVarastosta(Tuote t){
-        saldot.put(t,  saldo(t.getId())-1 );
-        kirjanpito.lisaaTapahtuma("otettiin varastosta "+t);
+    public void otaVarastosta(Tuote t) {
+        saldot.put(t, saldo(t.getId()) - 1);
+        kirjanpito.lisaaTapahtuma("otettiin varastosta " + t);
     }
 
-    
     @Override
-    public void palautaVarastoon(Tuote t){
-        saldot.put(t,  saldo(t.getId())+1 );
-        kirjanpito.lisaaTapahtuma("palautettiin varastoon "+t);
+    public void palautaVarastoon(Tuote t) {
+        saldot.put(t, saldo(t.getId()) + 1);
+        kirjanpito.lisaaTapahtuma("palautettiin varastoon " + t);
     }
 
     private void alustaTuotteet() {
