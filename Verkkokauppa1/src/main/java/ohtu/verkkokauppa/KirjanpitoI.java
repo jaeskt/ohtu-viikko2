@@ -5,18 +5,16 @@
  */
 package ohtu.verkkokauppa;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author timojaas
  */
-public interface VarastoInter {
+public interface KirjanpitoI {
 
-    Tuote haeTuote(int id);
+    ArrayList<String> getTapahtumat();
 
-    void otaVarastosta(Tuote t);
-
-    void palautaVarastoon(Tuote t);
-
-    int saldo(int id);
+    void lisaaTapahtuma(String tapahtuma);
     
 }

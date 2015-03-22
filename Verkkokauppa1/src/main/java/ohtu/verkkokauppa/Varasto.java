@@ -2,7 +2,7 @@ package ohtu.verkkokauppa;
 
 import java.util.*;
 
-public class Varasto implements VarastoInter {
+public class Varasto implements VarastoI  {
 
     private static Varasto instanssi;
 
@@ -23,6 +23,7 @@ public class Varasto implements VarastoInter {
         alustaTuotteet();
     }
 
+  
     @Override
     public Tuote haeTuote(int id){
         for (Tuote t : saldot.keySet()) {
@@ -37,12 +38,14 @@ public class Varasto implements VarastoInter {
         return saldot.get(haeTuote(id));
     }
 
+   
     @Override
     public void otaVarastosta(Tuote t){
         saldot.put(t,  saldo(t.getId())-1 );
         kirjanpito.lisaaTapahtuma("otettiin varastosta "+t);
     }
 
+    
     @Override
     public void palautaVarastoon(Tuote t){
         saldot.put(t,  saldo(t.getId())+1 );

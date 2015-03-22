@@ -9,8 +9,8 @@ package ohtu.verkkokauppa;
  *
  * @author timojaas
  */
-public interface PankkiInter {
+public interface ViitegeneraattoriI {
 
-    boolean tilisiirto(String nimi, int viitenumero, String tililta, String tilille, int summa);
+    int uusi();
     
 }
